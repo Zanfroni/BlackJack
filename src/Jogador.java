@@ -3,28 +3,36 @@ package com.T2IntroES;
 import java.util.ArrayList;
 
 /**
- * Created by Octavio on 5/31/2017.
+ * Classe que realiza todas as ações pertinentes ao jogador
+ * @author Guilherme Munaretto
+ * @author Octavio
  */
 public class Jogador {
-    private Carta[] mao;
-    private Carta[] segundaMao;
+    private int pontos;
+    private ArrayList<Carta> mao;
+    private ArrayList<Carta> segundaMao;
 
-    public Jogador() {
+    public Jogador(){
+        mao = new ArrayList<Carta>();
+        segundaMao = new ArrayList<Carta>();
+        pontos = 0;
+        receberMao();
     }
 
-    // Recebe a mão da banca
-    public void receberMao(Carta c1, Carta c2){
-
+    // Recebe a mão inicial da banca
+    private void receberMao(Carta c1, Carta c2){
+        mao.add(c1);
+        mao.add(c2);
     }
 
     // Continua a pedir cartas
-    public void hit(){
-
+    public void hit(Carta c){
+        mao.add(c);
     }
 
     //Para de receber cartas
-    public void stand(){
-
+    public boolean stand(){
+        return false;
     }
 
     // jogada Split:
