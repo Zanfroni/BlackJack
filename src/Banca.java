@@ -1,33 +1,51 @@
-package com.T2IntroES;
-
+//package com.T2IntroES;
+import java.util.*;
 /**
- * Created by Octavio on 5/31/2017.
+ * Classe responsável por guardar as informações do dealer.
+ * @author Guilherme Munaretto
+ * @author Octavio Carpez
  */
 public class Banca {
-    private Carta furo;
-    private Carta gameCard;
+    private int pontos;
     private int count;
-    private int current;
-
     private Baralho baralho;
+    private ArrayList<Carta> mao;
 
+    /**
+     * Método construtor da banca
+     * @param baralho Um baralho de cartas
+     */
     public Banca(Baralho baralho) {
+        this.mao = new ArrayList<Carta>();
         this.baralho = baralho;
-        count  = baralho.getSize();
-        current  = 0;
+        this.count  = baralho.getSize();
+        this.pontos = 0;
     }
 
-    // Pega a primeira carta disponivel se o baralho nao "acabou"
-    public Carta getCarta(){
-        return null;
+    /**
+     * Retorna o tamanho do baralho
+     * @return O tamanho do baralho
+     */
+    public int count(){
+        return this.count;
     }
 
-    // Jogada hold, Se a banca começa com uma carta de valor 10 ou um ás na gameCard
-    // a banca permite aos jogadores "segurarem" sua mão contra um possível blackjack
-    public boolean hold(){
-        boolean hold = false;
-        return hold;
+    /**
+     * Retorna uma referênia para a mão do dealer
+     * @return Uma referência para a mão do dealer
+     */
+    public ArrayList<Carta> getMao(){
+        return this.mao;
     }
+
+    /**
+     * Retorna uma referência para o baralho da banca
+     * @return Uma referência para o baralho da banca
+     */
+    public Baralho getBaralho(){
+        return this.baralho;
+    }
+
 
 }
 
