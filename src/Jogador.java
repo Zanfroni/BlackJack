@@ -1,47 +1,76 @@
-package com.T2IntroES;
+//package com.T2IntroES;
 
 import java.util.ArrayList;
 
 /**
  * Classe que realiza todas as ações pertinentes ao jogador
  * @author Guilherme Munaretto
- * @author Octavio
+ * @author Octavio Carpez
  */
 public class Jogador {
     private int pontos;
+    private boolean isPlaying;
+    private boolean moreCards;
     private ArrayList<Carta> mao;
     private ArrayList<Carta> segundaMao;
 
+    /**
+     * Método construtor da classe Jogador
+     */
     public Jogador(){
         mao = new ArrayList<Carta>();
         segundaMao = new ArrayList<Carta>();
+        isPlaying = true;
+        moreCards = true;
         pontos = 0;
-        receberMao();
     }
 
-    // Recebe a mão inicial da banca
-    private void receberMao(Carta c1, Carta c2){
-        mao.add(c1);
-        mao.add(c2);
+    /**
+     * Atribui um novo valor para o status do jogador
+     * @param status Novo status a ser atualizado
+     */
+    public void setIsPlaying(boolean status){
+        this.isPlaying = status;
     }
 
-    // Continua a pedir cartas
-    public void hit(Carta c){
-        mao.add(c);
+    /**
+     * Retorna o status do jogador
+     * @return Um booleano contendo o status do jogador na partida
+     */
+    public boolean getIsPlaying(){
+        return this.isPlaying;
     }
 
-    //Para de receber cartas
-    public boolean stand(){
-        return false;
+    /**
+     * Altera o valor da variável de controle sobre o recebimento de novas cartas
+     * @param bool Novo valor da variável
+     */
+    public void setMoreCards(boolean bool){
+        this.moreCards = bool;
     }
 
-    // jogada Split:
-    // Se as primeiras 2 cartas do jogador forem de valores iguais, ele pode escolher
-    // dividir suas cartas em 2 mãos diferentes então ele pode jogar com as 2 mãos.
-    // se ele estoura uma mão ele não sai do jogo, pode jogar até estourar a segunda mão
-
-    // Sai do jogo
-    public void surrender(){
-
+    /**
+     * Retorna o estado atual da variável de controle sobre o recebimento de novas cartas
+     * @return O valor atual da variável
+     */
+    public boolean getMoreCards(){
+        return this.moreCards;
     }
+
+    /**
+     * Retorna uma referência para a primeira mão do jogador
+     * @return Uma referência para a primeira mão do jogador
+     */
+    public ArrayList<Carta> getMao(){
+        return this.mao;
+    }
+
+    /**
+     * Retorna uma referência para a segunda mão do jogador
+     * @return Uma referência para a segunda mão do jogador
+     */
+    public ArrayList<Carta> getSegundaMao(){
+        return this.segundaMao;
+    }
+
 }
