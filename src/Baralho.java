@@ -9,16 +9,16 @@ import java.util.*;
  */
 public class Baralho {
 
-    private ArrayList<Carta> baralho;
+    private ArrayList<Carta> cartas;
 
     /**
      * Método construtor da classe Baralho
      */
     public Baralho() {
-        baralho = new ArrayList<Carta>();
+        cartas = new ArrayList<Carta>();
         fill();
         // Embaralhando o baralho
-        Collections.shuffle(baralho);
+        Collections.shuffle(cartas);
     }
 
     /**
@@ -26,7 +26,7 @@ public class Baralho {
      */
     private void fill(){
         // Verificando se o baralho não está completo
-        if (baralho.size() >= 52){
+        if (cartas.size() >= 52){
             return;
         }
 
@@ -45,15 +45,15 @@ public class Baralho {
             }
             // Caso especial: Inserindo um Ás (valor default é 1)
             if(valores[indexValores].equals("A")){
-                baralho.add(new Carta(naipes[indexNaipes],valores[indexValores],1));
+                cartas.add(new Carta(naipes[indexNaipes],valores[indexValores],1));
                 indexValores++;
             }
             // Caso especial: Inserindo um valete, rei ou dama (valor é 10)
             else if (valores[indexValores].equals("J") || valores[indexValores].equals("Q") || valores[indexValores].equals("K")){
-                baralho.add(new Carta(naipes[indexNaipes],valores[indexValores],10));
+                cartas.add(new Carta(naipes[indexNaipes],valores[indexValores],10));
                 indexValores++;
             }else{
-                baralho.add(new Carta(naipes[indexNaipes],valores[indexValores],Integer.parseInt(valores[indexValores])));
+                cartas.add(new Carta(naipes[indexNaipes],valores[indexValores],Integer.parseInt(valores[indexValores])));
                 indexValores++;
             }
 
@@ -64,14 +64,14 @@ public class Baralho {
      * Retorna uma referência para um objeto do tipo baralho
      * @return Uma referência para um objeto do tipo baralho
      */
-    public ArrayList<Carta> getBaralho(){ return baralho;}
+    public ArrayList<Carta> getCartas(){ return cartas;}
 
     /**
      * Retorna a quantidade de cartas no baralho
      * @return Um inteiro contendo a quantidade de cartas no baralho
      */
     public int getSize(){
-        return baralho.size();
+        return cartas.size();
     }
 
 }
