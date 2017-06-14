@@ -1,4 +1,6 @@
 //package com.T2IntroES;
+//import com.sun.javaws.exceptions.InvalidArgumentException;
+
 import java.util.*;
 /**
  * Classe responsável por guardar as informações do dealer.
@@ -6,35 +8,45 @@ import java.util.*;
  * @author Octavio Carpez
  */
 public class Banca {
+    private boolean isPlaying;
     private int pontos;
     private int count;
     private Baralho baralho;
-    private ArrayList<Carta> mao;
+    private Mao mao;
 
     /**
      * Método construtor da banca
      * @param baralho Um baralho de cartas
      */
     public Banca(Baralho baralho) {
-        this.mao = new ArrayList<Carta>();
+        this.mao = new Mao ();
         this.baralho = baralho;
-        this.count  = baralho.getSize();
-        this.pontos = 0;
+        this.count  = mao.getMao().size();
+        this.isPlaying = true;
     }
 
     /**
-     * Retorna o tamanho do baralho
-     * @return O tamanho do baralho
+     * Consulta o valor da variável isPlaying, retornando-a
+     * @return O valor da variável isPlaying
      */
-    public int count(){
-        return this.count;
+    public boolean getIsPlaying(){
+        return this.isPlaying;
     }
+
+    /**
+     * Atualiza o valor da variável isPlaying para o statu passado por parâmetro
+     * @param status O novo valor da variável isPlaying
+     */
+    public void setIsPlaying(boolean status){
+        this.isPlaying = status;
+    }
+
 
     /**
      * Retorna uma referênia para a mão do dealer
      * @return Uma referência para a mão do dealer
      */
-    public ArrayList<Carta> getMao(){
+    public Mao getMao(){
         return this.mao;
     }
 
@@ -46,6 +58,12 @@ public class Banca {
         return this.baralho;
     }
 
-
+    /**
+     * Retorna a quantidade de cartas da mão da banca
+     * @return A quantidade de cartas da mão da banca
+     */
+    public int getCount() {
+        return count;
+    }
 }
 

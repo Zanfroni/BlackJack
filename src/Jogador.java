@@ -8,22 +8,24 @@ import java.util.ArrayList;
  * @author Octavio Carpez
  */
 public class Jogador {
-    private int pontos;
     private boolean isPlaying;
     private boolean moreCards;
-    private ArrayList<Carta> mao;
-    private ArrayList<Carta> segundaMao;
+    private Mao maoAtual;
+    private Mao primeiraMao;
+    private Mao segundaMao;
 
     /**
      * Método construtor da classe Jogador
      */
     public Jogador(){
-        mao = new ArrayList<Carta>();
-        segundaMao = new ArrayList<Carta>();
+        this.primeiraMao = new Mao();
+        this.maoAtual = primeiraMao;
+        this.segundaMao = new Mao();
         isPlaying = true;
         moreCards = true;
-        pontos = 0;
     }
+
+
 
     /**
      * Atribui um novo valor para o status do jogador
@@ -45,7 +47,7 @@ public class Jogador {
      * Altera o valor da variável de controle sobre o recebimento de novas cartas
      * @param bool Novo valor da variável
      */
-    public void setMoreCards(boolean bool){
+    public void setStand(boolean bool){
         this.moreCards = bool;
     }
 
@@ -53,7 +55,7 @@ public class Jogador {
      * Retorna o estado atual da variável de controle sobre o recebimento de novas cartas
      * @return O valor atual da variável
      */
-    public boolean getMoreCards(){
+    public boolean getStand(){
         return this.moreCards;
     }
 
@@ -61,16 +63,32 @@ public class Jogador {
      * Retorna uma referência para a primeira mão do jogador
      * @return Uma referência para a primeira mão do jogador
      */
-    public ArrayList<Carta> getMao(){
-        return this.mao;
+    public Mao getPrimeiraMao(){
+        return this.primeiraMao;
     }
 
     /**
      * Retorna uma referência para a segunda mão do jogador
      * @return Uma referência para a segunda mão do jogador
      */
-    public ArrayList<Carta> getSegundaMao(){
+    public Mao getSegundaMao(){
         return this.segundaMao;
+    }
+
+    /**
+     * Retorna uma referência para a mão atual do jogador
+     * @return Uma referência para a mão atual do jogador
+     */
+    public Mao getMaoAtual(){
+        return this.maoAtual;
+    }
+
+    /**
+     * Atualiza a mão atual do jogador
+     * @param newMao A nova mão atual do jogador
+     */
+    public void setMaoAtual(Mao newMao){
+        this.maoAtual = newMao;
     }
 
 }
