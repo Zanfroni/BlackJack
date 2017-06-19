@@ -17,7 +17,6 @@ public class Baralho {
     public Baralho() {
         cartas = new ArrayList<Carta>();
         fill();
-        // Embaralhando o baralho
         Collections.shuffle(cartas);
     }
 
@@ -37,9 +36,10 @@ public class Baralho {
 
 
         // Enquanto ainda tenho naipes para inserir
-        while(indexNaipes <= 3){
+        while(indexNaipes < 3){
+
             // Se já inseri todas as cartas de um naipe, pula para o próximo
-            if (indexValores == 13){
+            if (indexValores == 12){
                 indexNaipes++;
                 indexValores = 0;
             }
@@ -58,6 +58,7 @@ public class Baralho {
             }
 
         }
+
     }
 
     /**
