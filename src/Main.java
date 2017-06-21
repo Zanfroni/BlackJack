@@ -19,8 +19,6 @@ public class Main {
 
             String jogada = exibeMenu();
             String status = bj.rodada(jogada);
-            bj.getBanca().getMao().calculaPontos();
-            bj.getJogador().getPrimeiraMao().calculaPontos();
             int pontosBanca = bj.getBanca().getMao().getPontos();
             int pontosJogador = bj.getJogador().getPrimeiraMao().getPontos();
 
