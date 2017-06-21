@@ -7,11 +7,10 @@ import java.util.ArrayList;
  */
 public class Mao {
     private ArrayList<Carta> mao;
-    private int pontos;
+    //private int pontos;
 
     public Mao() {
         this.mao = new ArrayList<Carta>();
-        this.pontos = 0;
     }
 
     /**
@@ -22,24 +21,26 @@ public class Mao {
         return mao;
     }
 
-    /**
-     * Retorna um inteiro contendo o número de pontos da mão
-     * @return
-     */
-    public int getPontos() {
-        return pontos;
-    }
+//    /**
+//     * Retorna um inteiro contendo o número de pontos da mão
+//     * @return
+//     */
+//    public int getPontos() {
+//        return pontos;
+//    }
 
     /**
-     * Função que calcula a quantidade de pontos de uma mão com base no valor das suas cartas
+     * Função que calcula e retorna a quantidade de pontos de uma mão com base no valor das suas cartas
      */
-    public void calculaPontos(){
+    public int getPontos(){
         if (mao.size() <= 0){
-            return;
+            return 0;
         }
+        int pontos = 0;
         for(Carta c: mao){
             pontos = pontos + c.getValorNumerico();
         }
+        return pontos;
     }
 
 
