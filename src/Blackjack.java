@@ -55,7 +55,7 @@ public class Blackjack {
         // Adiciona a carta na mão atual
         jogador.getMaoAtual().getMao().add(c);
         // Calcula os pontos do jogador ja com a nova carta em sua mão
-        jogador.getMaoAtual().calculaPontos();
+
         if (jogador.getMaoAtual().getPontos() > 21){
             jogador.setIsPlaying(false);
         }
@@ -69,7 +69,6 @@ public class Blackjack {
         // Adiciona a carta na mão atual
         banca.getMao().getMao().add(c);
         // Calcula os pontos do jogador ja com a nova carta em sua mão
-        banca.getMao().calculaPontos();
         if (banca.getMao().getPontos() > 21){
             banca.setIsPlaying(false);
         }
@@ -79,12 +78,12 @@ public class Blackjack {
      * Faz a jogada stand
      */
     public void stand(){
-        banca.getMao().calculaPontos();
-        jogador.getPrimeiraMao().calculaPontos();
 
         // Caso a banca tenha mais pontos que o jogador e não tenha estourado 21 pontos, então ela é o vencedor
-        if (banca.getMao().getPontos() > banca.getMao().getPontos()){
+        if (banca.getMao().getPontos() > jogador.getPrimeiraMao().getPontos()){
             jogador.setIsPlaying(false);
+            return;
+
         }
         // Caso o jogador tenha mais pontos que a banca e não tenha estourado 21 pontos, a banca deve comprar mais cartas
         else if (jogador.getPrimeiraMao().getPontos() > banca.getMao().getPontos()){
@@ -100,6 +99,7 @@ public class Blackjack {
                 // Se a banca estourou o limite de 21 pontos, então ela perdeu
                 if(banca.getMao().getPontos() > 21){
                     banca.setIsPlaying(false);
+                    return;
                 }
             }
             banca.setIsPlaying(false);
@@ -108,7 +108,6 @@ public class Blackjack {
         else if(jogador.getPrimeiraMao().getPontos() == 21 && banca.getMao().getPontos() == 21){
             jogador.setIsPlaying(false);
             banca.setIsPlaying(false);
-
         }
 
     }
@@ -167,6 +166,12 @@ public class Blackjack {
      */
     public String rodada(String jogada){
 
+
+//        String statusInicial = iniciaJogo();
+//        if(!statusInicial.equals("Ok")){
+//            return statusInicial;
+//        }
+
         String statusJogo = verificaGanhador();
         mostraCartas();
         // Verifica se o jogo ja terminou no inicio
@@ -219,15 +224,8 @@ public class Blackjack {
 
         // Caso a jogada seja um surrender
         else{
-            //surrender();s
-            //statusJogo = verificaGanhador();
             mostraCartas();
-            // Se for diferente de "ok", retorna o nome do vencedor
-//            if(!statusJogo.equals("Ok")){
-//                return statusJogo;
-//            }
             return "Dealer";
-
         }
         return "";
     }
@@ -235,14 +233,24 @@ public class Blackjack {
     /**
      * Método que distribui as cartas iniciais e inicia o jogo
      */
-    private void iniciaJogo(){
-        // Retira 2 cartas do baralho da banca e adiciona na mão do jogador
-        jogador.getPrimeiraMao().getMao().add(banca.getBaralho().getCartas().remove(0));
-        jogador.getPrimeiraMao().getMao().add(banca.getBaralho().getCartas().remove(0));
-        // Retira 2 cartas do baralho da banca e adiciona na mão da banca
-        banca.getMao().getMao().add(banca.getBaralho().getCartas().remove(0));
-        banca.getMao().getMao().add(banca.getBaralho().getCartas().remove(0));
+    private String iniciaJogo(){
+        // Se as mãos da banca e do jogador estiverem vazias, dou as cartas iniciais
+        if (jogador.getPrimeiraMao().getMao().size() == 0 && banca.getMao().getMao().size() == 0){
+            // Retira 2 cartas do baralho da banca e adiciona na mão do jogador
+            jogador.getPrimeiraMao().getMao().add(banca.getBaralho().getCartas().remove(0));
+            jogador.getPrimeiraMao().getMao().add(banca.getBaralho().getCartas().remove(0));
+            // Retira 2 cartas do baralho da banca e adiciona na mão da banca
+            banca.getMao().getMao().add(banca.getBaralho().getCartas().remove(0));
+            banca.getMao().getMao().add(banca.getBaralho().getCartas().remove(0));
+        }
         mostraCartas();
+        // Verificando se há um ganhador no inicio da partida
+        String status = verificaGanhador();
+        // Se o status for diferente de Ok, retorna ele mesmo
+        if (!status.equals("Ok")){
+            return status;
+        }
+        return "";
     }
 
     /**
