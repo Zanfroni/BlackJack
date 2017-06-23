@@ -232,6 +232,7 @@ public class Blackjack {
             boolean flag = false;
             while(!flag){
                 String opcao = in.next();
+                if(opcao.equals("sim") || opcao.equals("nao")){
                     if (opcao.equals("sim")){
                         salvaJogo();
                         flag = true;
@@ -239,7 +240,7 @@ public class Blackjack {
                     else{
                         flag = true;
                     }
-
+                }
             }
             System.exit(0);
         }
@@ -326,7 +327,7 @@ public class Blackjack {
             br.write("B;" + banca.getMao().getPontos());
             br.newLine();
             for (Carta c : banca.getMao().getMao()) {
-                br.write(c.getNaipe() + c.getValor());
+                br.write(c.getNaipe() +";"+ c.getValor());
                 br.newLine();
             }
             br.newLine();
