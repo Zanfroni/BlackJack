@@ -25,20 +25,20 @@ public class Main {
             // Caso a mesa tenha vencido
             if (status.equals("Dealer")){
                 System.out.println("A mesa é a vencedora, com "+pontosBanca+" pontos a "+pontosJogador);
-                bj.salvaJogo("Dealer",pontosBanca);
-                break;
+                bj.reset();
+                continue;
             }
             // Caso o jogador tenha vencido
             else if (status.equals("Jogador")){
                 System.out.println("O jogador é o vencedor, com "+pontosJogador+" pontos a "+pontosBanca);
-                bj.salvaJogo("Jogador",pontosJogador);
-                break;
+                bj.reset();
+                continue;
             }
             // Caso tenha dado empate
             else if(status.equals("Empate")){
                 System.out.println("O jogo terminou empatado!");
-                bj.salvaJogo("Empate",0);
-                break;
+                bj.reset();
+                continue;
             }
         }
 
@@ -51,12 +51,14 @@ public class Main {
         System.out.println("[hit] - Pede à banca mais uma carta do baralho");
         System.out.println("[stand] - Encerra a rodada. Os pontos então são computados e um vencedor é declarado");
         System.out.println("[surrender] - Desiste da partida. O dealer é automaticamente declarado o vencedor");
+        System.out.println("[save] - Salva o resultado da partida");
+        System.out.println("[quit] - Sai da partida");
         System.out.println("");
         System.out.println("-------------------------------------------------------------------------------------");
 
         Scanner in = new Scanner(System.in);
         //TODO tratar recebimento de parâmetro incorreto
-        String order = in.nextLine();
+        String order = in.nextLine().toLowerCase();
         return order;
     }
 }

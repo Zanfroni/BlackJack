@@ -53,10 +53,10 @@ public class Blackjack {
      */
     public void hit(Carta c){
         // Adiciona a carta na mão atual
-        jogador.getMaoAtual().getMao().add(c);
+        jogador.getPrimeiraMao().getMao().add(c);
         // Calcula os pontos do jogador ja com a nova carta em sua mão
 
-        if (jogador.getMaoAtual().getPontos() > 21){
+        if (jogador.getPrimeiraMao().getPontos() > 21){
             jogador.setIsPlaying(false);
         }
     }
@@ -166,19 +166,13 @@ public class Blackjack {
      */
     public String rodada(String jogada){
 
-
-//        String statusInicial = iniciaJogo();
-//        if(!statusInicial.equals("Ok")){
-//            return statusInicial;
-//        }
-
         String statusJogo = verificaGanhador();
         mostraCartas();
         // Verifica se o jogo ja terminou no inicio
         if(!statusJogo.equals("Ok")){
             return statusJogo;
         }
-        mostraCartas();
+
 
         // Caso a jogada seja um hit
         if(jogada.equals("hit")){
@@ -223,9 +217,31 @@ public class Blackjack {
         }
 
         // Caso a jogada seja um surrender
-        else{
+        else if (jogada.equals("surrender")){
             mostraCartas();
             return "Dealer";
+        }
+
+        // Caso o jogador deseje salvar o progresso atual
+        else if(jogada.equals("save")){
+            salvaJogo();
+        }
+        else{
+            System.out.print("Você deseja salvar o seu progresso? [sim/nao]");
+            Scanner in = new Scanner(System.in);
+            boolean flag = false;
+            while(!flag){
+                String opcao = in.next();
+                    if (opcao.equals("sim")){
+                        salvaJogo();
+                        flag = true;
+                    }
+                    else{
+                        flag = true;
+                    }
+
+            }
+            System.exit(0);
         }
         return "";
     }
@@ -279,41 +295,65 @@ public class Blackjack {
 
     /**
      * Método utilizado no final de cada partida para imprimir em um arquivo o vencedor e a sua quantia de pontos
-     * @param vencedor Uma string contendo o vencedor da partida
-     * @param pontos Um inteiro com o número de pontos do vencedor
-     * @ensures Um arquivo .txt contendo o vencedor da rodada e seus pontos
      */
-    public void salvaJogo(String vencedor, int pontos){
+    public void salvaJogo() {
 
         try {
-            File file = new File("resultado.txt");
+
+
+            File file = new File("progresso.txt");
             BufferedWriter br = new BufferedWriter(new FileWriter(file));
-            br.write("------------------------------------- Vinte e Um ------------------------------------- ");
+
+            //TODO Padrão; J:PontosJogador
+            //TODO Naipe1;Carta1
+            //TODO ...
+            //TODO (espaço em branco)
+
+            //TODO Padrão; B:PontosBanca
+            //TODO Naipe1;Carta1
+            //TODO ...
+            //TODO (espaço em branco)
+
+            br.write("J;" + jogador.getPrimeiraMao().getPontos());
             br.newLine();
-            // Caso tenha sido empate
-            if(vencedor.equals("Empate")){
-                br.write("Resultado: Empate!");
+            for (Carta c : jogador.getPrimeiraMao().getMao()) {
+                br.write(c.getNaipe() + ";" + c.getValor());
+                br.newLine();
             }
-            // Caso haja um vencedor
-            else{
-                br.write("Vencedor: "+vencedor+", com "+pontos+" pontos");
+            br.newLine();
+
+
+            br.write("B;" + banca.getMao().getPontos());
+            br.newLine();
+            for (Carta c : banca.getMao().getMao()) {
+                br.write(c.getNaipe() + c.getValor());
+                br.newLine();
             }
             br.newLine();
-            br.write("Data da gravação: "+new SimpleDateFormat("dd/MM/yy hh:mm:ss").format(new Date()));
             br.newLine();
-            br.write("-------------------------------------------------------------------------------------- ");
             br.flush();
             br.close();
+        } catch (Exception e) {
+            System.out.println("ERRO: " + e.getMessage());
         }
-        catch(Exception e){
-            System.out.println("ERRO: "+e.getMessage());
-        }
-
     }
 
-
-
-
-
+    /**
+     * Método que reseta o estado da partida
+     */
+    public void reset(){
+            this.jogador = new Jogador();
+            this.baralho = new Baralho();
+            this.banca = new Banca(baralho);
+            this.isSplitted = 0;
+            iniciaJogo();
+    }
 
 }
+
+
+
+
+
+
+
