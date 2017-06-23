@@ -9,20 +9,15 @@ import java.util.ArrayList;
  */
 public class Jogador {
     private boolean isPlaying;
-    private boolean moreCards;
-    private Mao maoAtual;
+    //private boolean moreCards;
     private Mao primeiraMao;
-    private Mao segundaMao;
 
     /**
      * Método construtor da classe Jogador
      */
     public Jogador(){
         this.primeiraMao = new Mao();
-        this.maoAtual = primeiraMao;
-        this.segundaMao = new Mao();
         isPlaying = true;
-        moreCards = true;
     }
 
 
@@ -43,21 +38,7 @@ public class Jogador {
         return this.isPlaying;
     }
 
-    /**
-     * Altera o valor da variável de controle sobre o recebimento de novas cartas
-     * @param bool Novo valor da variável
-     */
-    public void setStand(boolean bool){
-        this.moreCards = bool;
-    }
 
-    /**
-     * Retorna o estado atual da variável de controle sobre o recebimento de novas cartas
-     * @return O valor atual da variável
-     */
-    public boolean getStand(){
-        return this.moreCards;
-    }
 
     /**
      * Retorna uma referência para a primeira mão do jogador
@@ -67,28 +48,5 @@ public class Jogador {
         return this.primeiraMao;
     }
 
-    /**
-     * Retorna uma referência para a segunda mão do jogador
-     * @return Uma referência para a segunda mão do jogador
-     */
-    public Mao getSegundaMao(){
-        return this.segundaMao;
-    }
-
-    /**
-     * Retorna uma referência para a mão atual do jogador
-     * @return Uma referência para a mão atual do jogador
-     */
-    public Mao getMaoAtual(){
-        return this.maoAtual;
-    }
-
-    /**
-     * Atualiza a mão atual do jogador
-     * @param newMao A nova mão atual do jogador
-     */
-    public void setMaoAtual(Mao newMao){
-        this.maoAtual = newMao;
-    }
 
 }
