@@ -1,7 +1,6 @@
-//package com.T2IntroES;
+package Blackjack;//package com.T2IntroES;
 //import com.sun.javaws.exceptions.InvalidArgumentException;
 
-import java.util.*;
 /**
  * Classe responsável por guardar as informações do dealer.
  * @author Guilherme Munaretto

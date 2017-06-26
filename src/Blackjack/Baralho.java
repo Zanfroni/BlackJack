@@ -1,4 +1,6 @@
-=//package T2/BlackJack;
+package Blackjack;
+
+import java.util.ArrayList;//package T2/BlackJack;
 
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class Baralho {
     private ArrayList<Carta> cartas;
 
     /**
-     * Método construtor da classe Baralho
+     * Método construtor da classe Blackjack.Baralho
      */
     public Baralho() {
         cartas = new ArrayList<Carta>();

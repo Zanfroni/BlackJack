@@ -1,4 +1,5 @@
 //package com.T2IntroES;
+package Blackjack;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -148,7 +149,7 @@ public class Blackjack {
         }
         // Caso o jogador tenha vencido
         else if (jogador.getIsPlaying() && !banca.getIsPlaying()){
-            return "Jogador";
+            return "Blackjack.Jogador";
         }
         // Caso a mesa tenha vencido
         else if(!jogador.getIsPlaying() && banca.getIsPlaying()){
@@ -277,7 +278,7 @@ public class Blackjack {
     private void mostraCartas(){
         // Imprime as cartas da mão do jogador
         System.out.println("--------------------------------------------------------------");
-        System.out.println("Mão do Jogador: ");
+        System.out.println("Mão do Blackjack.Jogador: ");
         for(Carta c : jogador.getPrimeiraMao().getMao()){
             System.out.println("["+c.getValor()+" de "+c.getNaipe()+"]");;
         }

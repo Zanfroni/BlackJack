@@ -1,6 +1,4 @@
-//package com.T2IntroES;
-
-import java.util.ArrayList;
+package Blackjack;//package com.T2IntroES;
 
 /**
  * Classe que realiza todas as ações pertinentes ao jogador
@@ -13,7 +11,7 @@ public class Jogador {
     private Mao primeiraMao;
 
     /**
-     * Método construtor da classe Jogador
+     * Método construtor da classe Blackjack.Jogador
      */
     public Jogador(){
         this.primeiraMao = new Mao();

@@ -1,4 +1,4 @@
-//package com.T2IntroES;
+package Blackjack;//package com.T2IntroES;
 
 /**
  * Classe responsável por armazenar as informações pertinentes à carta

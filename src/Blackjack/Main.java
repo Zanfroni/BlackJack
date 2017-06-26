@@ -1,4 +1,4 @@
-//package com.T2IntroES;
+package Blackjack;//package com.T2IntroES;
 
 import java.util.Scanner;
 
@@ -29,7 +29,7 @@ public class Main {
                 continue;
             }
             // Caso o jogador tenha vencido
-            else if (status.equals("Jogador")){
+            else if (status.equals("Blackjack.Jogador")){
                 System.out.println("O jogador é o vencedor, com "+pontosJogador+" pontos a "+pontosBanca);
                 bj.reset();
                 continue;

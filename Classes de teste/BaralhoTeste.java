@@ -38,7 +38,7 @@ public class BaralhoTeste {
 		/*
 		 * Testes para ver se o baralho contém as cartas corretas.
 		 * Devido a aleatoriedade do método shuffle, esse teste só irá funcionar
-		 * se o método shuffle estiver "comentado" no construtor do Baralho
+		 * se o método shuffle estiver "comentado" no construtor do Blackjack.Baralho
 		 */
 		String[] naipes = {"Copas", "Espada", "Ouro", "Paus"};
         	String[] valores = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
