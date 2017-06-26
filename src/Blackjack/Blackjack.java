@@ -227,7 +227,7 @@ public class Blackjack {
         else if(jogada.equals("save")){
             salvaJogo();
         }
-        else{
+        else if(jogada.equals("quit")){
             System.out.print("Você deseja salvar o seu progresso? [sim/nao]");
             Scanner in = new Scanner(System.in);
             boolean flag = false;
@@ -244,6 +244,9 @@ public class Blackjack {
                 }
             }
             System.exit(0);
+        }
+        else {
+            System.out.println("Comando Inválido. Por favor, digite uma jogada válida.");
         }
         return "";
     }
