@@ -279,22 +279,30 @@ public class Blackjack {
      * @requires
      */
     private void mostraCartas(){
+        int player = 0;
         // Imprime as cartas da mão do jogador
         System.out.println("--------------------------------------------------------------");
         System.out.println("Mão do Blackjack.Jogador: ");
         for(Carta c : jogador.getPrimeiraMao().getMao()){
-            System.out.println("["+c.getValor()+" de "+c.getNaipe()+"]");;
+            System.out.println("["+c.getValor()+" de "+c.getNaipe()+"]");
+            player += c.getValorNumerico();
         }
+        System.out.println("Total de Pontos do Jogador: " + player);
         System.out.println("--------------------------------------------------------------");
 
         System.out.println("");
 
         // Imprime as cartas da mão do dealer
         System.out.println("--------------------------------------------------------------");
+
         System.out.println("Mão do Dealer: ");
+        int dealer = 0;
         for(Carta c : banca.getMao().getMao()){
             System.out.println("["+c.getValor()+" de "+c.getNaipe()+"]");
+            dealer += c.getValorNumerico();
         }
+        System.out.println("Total de Pontos da Banca : " + dealer);
+
         System.out.println("--------------------------------------------------------------");
     }
 
@@ -342,6 +350,17 @@ public class Blackjack {
             System.out.println("ERRO: " + e.getMessage());
         }
     }
+
+
+    public void carregaJogo(){
+        Scanner in = new Scanner("progresso.txt");
+        while(in.hasNext()){
+            if(in.next().equals("J")){
+
+            }
+        }
+    }
+
 
     /**
      * Método que reseta o estado da partida
