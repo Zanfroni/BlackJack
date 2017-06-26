@@ -1,4 +1,4 @@
-//package T2/BlackJack;
+=//package T2/BlackJack;
 
 import java.util.*;
 
@@ -36,13 +36,16 @@ public class Baralho {
 
 
         // Enquanto ainda tenho naipes para inserir
-        while(indexNaipes < 3){
+        while(indexNaipes <= 3){
 
             // Se já inseri todas as cartas de um naipe, pula para o próximo
-            if (indexValores == 12){
+            if (indexValores == 13){
                 indexNaipes++;
                 indexValores = 0;
             }
+            // Caso ja tenha preenchido os 4 naipes, o laço deve ser interrompido
+             if(indexNaipes == 4) break;
+            
             // Caso especial: Inserindo um Ás (valor default é 1)
             if(valores[indexValores].equals("A")){
                 cartas.add(new Carta(naipes[indexNaipes],valores[indexValores],1));
