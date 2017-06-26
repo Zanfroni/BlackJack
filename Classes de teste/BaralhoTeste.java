@@ -16,7 +16,7 @@ public class BaralhoTeste {
 
 	@Test
 	public void construtorTeste() {
-		//garanta que a referência criada não seja null
+		//garanta que a referÃªncia criada nÃ£o seja null
 		assertNotNull(baralho);
 	}
 	
@@ -32,27 +32,29 @@ public class BaralhoTeste {
 	
 	@Test
 	public void fillTeste() {
+		ArrayList<Carta> cards = baralho.getCartas();
 		//garanta que tenha 52 cartas no baralho
-		//assertEquals(52, baralho.getCartas().size());
+		assertEquals(52, cards.size());
 		/*
-		 * Testes para ver se o baralho contém as cartas corretas.
-		 * Como teste de exaustão não é algo prático, serão testados apenas
-		 * se os valores extremos (A e K) e o meio termo (7) 
-		 * junto com os quatro naipes estão presentes no baralho
+		 * Testes para ver se o baralho contÃ©m as cartas corretas.
+		 * Devido a aleatoriedade do mÃ©todo shuffle, esse teste sÃ³ irÃ¡ funcionar
+		 * se o mÃ©todo shuffle estiver "comentado" no construtor do Baralho
 		 */
-		//Carta c1 = new Carta("Copas", "A", 1);
-		//Carta c2 = new Carta("Copas", "7", 7);
-		//Carta c3 = new Carta("Copas", "K", 10);
-		//Carta c4 = new Carta("Espada", "A", 1);
-		//Carta c5 = new Carta("Espada", "7", 7);
-		//Carta c6 = new Carta("Espada", "K", 10);
-		//Carta c7 = new Carta("Ouro", "A", 1);
-		//Carta c8 = new Carta("Ouro", "7", 7);
-		//Carta c9 = new Carta("Ouro", "K", 10);
-		//Carta c10 = new Carta("Paus", "A", 1);
-		//Carta c11 = new Carta("Paus", "7", 7);
-		//Carta c12 = new Carta("Paus", "K", 10);
-		//assertTrue(baralho.getCartas().contains(c1));
+		String[] naipes = {"Copas", "Espada", "Ouro", "Paus"};
+        	String[] valores = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+        	int indexNaipes = 0;
+        	int indexValores = 0;
+		for(int i = 0; i < 52; i++){
+			if (indexValores == 13){
+               		 	indexNaipes++;
+               		 	indexValores = 0;
+           		 }
+            		if(indexNaipes == 4) break;
+            		//Garanta que o naipe seja igual
+           		 assertTrue(cards.get(i).getNaipe().equals(naipes[indexNaipes]));
+            		//Garanta que o valor numÃ©rico seja igual
+            		assertTrue(cards.get(i).getValor().equals(valores[indexValores]));
+           		 indexValores++;
+		}
 	}
-
 }
